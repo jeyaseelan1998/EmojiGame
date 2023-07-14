@@ -32,25 +32,25 @@ class EmojiGame extends Component {
   }
 
   onSelectEmoji = id => {
-    const { selectedEmojiesList } = this.state
     if (!selectedEmojiesList.includes(id)) {
       this.setState(prevState => ({
         selectedEmojiesList: [...prevState.selectedEmojiesList, id]
       }))
     } else {
-      const score = selectedEmojiesList.length
       this.setState(prevState => ({
-        isGameFinished: true,
-        topScore: prevState.topScore < score ? score : prevState.topScore
+        isGameFinished: true
       }))
     }
   }
 
   onPlayAgain = () => {
-    this.setState({
+    const { selectedEmojiesList } = this.state
+    const score = selectedEmojiesList.length
+    this.setState(prevState => ({
       isGameFinished: false,
-      selectedEmojiesList: []
-    })
+      selectedEmojiesList: [],
+      topScore: prevState.topScore < score ? score : prevState.topScore
+    }))
   }
 
   render() {
