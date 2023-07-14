@@ -38,16 +38,14 @@ class EmojiGame extends Component {
     const score = selectedEmojiesList.length
 
     if (!selectedEmojiesList.includes(id)) {
-      if(emojisList.length-1 !== score) {
-          this.setState(prevState => ({
-            selectedEmojiesList: [...prevState.selectedEmojiesList, id]
-          }))
-      } else {
-        this.setState(prevState => ({
-          selectedEmojiesList: [...prevState.selectedEmojiesList, id],
+      if (emojisList.length - 1 === score) {
+        this.setState({
           isGameFinished: true
-        }))
+        })
       }
+      this.setState(prevState => ({
+        selectedEmojiesList: [...prevState.selectedEmojiesList, id]
+      }))
     } else {
       this.setState(prevState => ({
         isGameFinished: true
